@@ -12,6 +12,18 @@ class AdminController < ApplicationController
     @application = Application.find(params[:id])
   end
 
+  def approve
+    #makes pet not adoptable
+    #changes application_pet.status to Approved
+    #changes application.status to Approved IF all instances of application_pets where application_id == application.id
+  end
+
+  def reject
+
+  end
+
+
+
   def update
     @application = Application.find_by(id: params[:id])
     @pet = Pet.find_by(id: params[:pet_id])
