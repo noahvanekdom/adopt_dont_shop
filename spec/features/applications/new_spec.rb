@@ -49,7 +49,6 @@ RSpec.describe 'starting an application' do
       fill_in('City', with: 'Washington')
       fill_in('State', with: 'DC')
       click_button('Create Application')
-save_and_open_page
 
       expect(current_path).to eq("/applications")
       expect(page).to have_content("New Application")
