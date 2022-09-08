@@ -21,7 +21,7 @@ class Shelter < ApplicationRecord
   end
 
   def self.active_applications
-      joins(pets: [:applications]).where("status = ?", "Pending")
+      joins(pets: [:applications]).where("status = ?", "Pending").distinct
   end
   
   def adoptable_pets

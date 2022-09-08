@@ -43,10 +43,23 @@ RSpec.describe 'Applications show page:' do
     end
   end
 
+  describe 'When a pet is on multiple applications' do
+    it 'approving a pet on one application does not affect the pets status on other applications' do
+      @application_1.pets << @pet_3
+      click_on "Approve #{@pet_3.name}'s Adoption"
+      visit "/admin/applications/#{@application_1.id}"
+
+      expect(page).to_not have_content("#{@pet_3.name}'s adoption was approved!")
+      expect(page).to have_button("Approve #{@pet_3.name}'s Adoption")
+
+    end
+  end
+
   describe 'When I click the button to reject adoption of a pet' do
     before(:each) do
       click_on "Reject #{@pet_2.name}'s Adoption"
     end
+
     it 'takes me back to the admin application show page' do
       expect(current_path).to eq("/admin/applications/#{@application_2.id}")
     end
